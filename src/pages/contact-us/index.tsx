@@ -1,11 +1,10 @@
-import { Header } from "@/components/Header";
+import { Layout } from "@/components/Layout";
 import { Contact } from "@/views/contact/Contact";
 
 export default function ContactUs() {
   return (
-    <div>
-      <Header />
+    <Layout>
       <Contact />
-    </div>
+    </Layout>
   );
 }

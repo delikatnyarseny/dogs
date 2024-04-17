@@ -1,3 +1,5 @@
+import { Layout } from "@/components/Layout";
+
 export default function Shop() {
-  return <div>Shop</div>;
+  return <Layout>Shop</Layout>;
 }

@@ -1,28 +1,41 @@
+import { useRouter } from "next/router";
+import { StyledHeader } from "./styled";
 import { Logo } from "@/icons/Logo";
 import { FC } from "react";
-import { StyledHeader } from "./styled";
+import cn from "classnames";
+import Link from "next/link";
 
 interface Props {}
 
+// remove
 const navigationItems = [
   { label: "Home", link: "/" },
-  { label: "Info", link: "/" },
-  { label: "Spa Services", link: "/" },
-  { label: "Book Apointment", link: "/" },
-  { label: "Blog", link: "/" },
-  { label: "About us", link: "/" },
-  { label: "Contact us", link: "/" },
+  { label: "Info", link: "/info" },
+  { label: "Spa Services", link: "/spa-services" },
+  { label: "Book Apointment", link: "/book-apointment" },
+  { label: "Blog", link: "/blog" },
+  { label: "About us", link: "/about-us" },
+  { label: "Contact us", link: "/contact-us" },
 ];
 
 export const Header: FC<Props> = () => {
+  const { asPath } = useRouter();
+
   return (
     <StyledHeader>
-      <Logo />
+      <Logo className="header-logo" />
 
-      <nav>
-        <ul>
+      <nav className="header-nav">
+        <ul className="header-nav__list">
           {navigationItems.map(({ label, link }) => (
-            <li key={label}>{label}</li>
+            <li
+              key={label}
+              className={cn("header-nav__list-item", {
+                "header-nav__list-item__active": link === asPath,
+              })}
+            >
+              <Link href={link}>{label}</Link>
+            </li>
           ))}
         </ul>
       </nav>
