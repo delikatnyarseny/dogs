@@ -25,7 +25,7 @@ export const StyledHero = styled.div`
     max-width: 499px;
     text-align: center;
     font-size: 63px;
-    color: #4c4c4b;
+    color: ${({ theme }) => theme.colors["charcoal"]};
   }
 
   .hero-button {

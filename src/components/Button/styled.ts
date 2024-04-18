@@ -4,7 +4,7 @@ export const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e89b93;
+  background: ${({ theme }) => theme.colors["pink-kisses"]};
   cursor: pointer;
   border: none;
   border-radius: 30px;

@@ -5,5 +5,5 @@ export const StyledBanner = styled.div`
   text-align: center;
   font-size: 26px;
   font-weight: 700;
-  background: #f3ded7;
+  background: ${({ theme }) => theme.colors["beige"]};
 `;

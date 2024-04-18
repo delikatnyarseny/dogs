@@ -28,12 +28,12 @@ export const StyledTimeSlot = styled.div`
       width: 24px;
       height: 24px;
       border-radius: 4px;
-      border: 1px solid #4c4c4b;
+      border: 1px solid ${({ theme }) => theme.colors["charcoal"]};
       outline: none;
       cursor: pointer;
 
       &:checked {
-        background: #e89b93;
+        background: ${({ theme }) => theme.colors["pink-kisses"]};
         border: none;
       }
     }

@@ -27,7 +27,7 @@ export const StyledCalendar = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     font-weight: bold;
-    color: #e89b93;
+    color: ${({ theme }) => theme.colors["pink-kisses"]};
     margin-bottom: 10px;
   }
 

@@ -22,7 +22,7 @@ export const StyledContact = styled.section`
     font-weight: 700;
 
     a {
-      color: #e89b93;
+      color: ${({ theme }) => theme.colors["pink-kisses"]};
       text-decoration: underline;
     }
   }
