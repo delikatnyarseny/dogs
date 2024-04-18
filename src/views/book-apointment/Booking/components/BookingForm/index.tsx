@@ -1,7 +1,9 @@
 import { FC } from "react";
+
+import { Button } from "@/components/Button";
+
 import { BookingCalendar } from "../BookingCalendar";
 import { BookingPaymentForm } from "../BookingPaymentForm";
-import { Button } from "@/components/Button";
 
 interface Props {}
 

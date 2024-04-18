@@ -1,8 +1,10 @@
-import { FC } from "react";
-import { StyledHero } from "./styled";
-import heroImage from "@/assets/home-hero.png";
 import Image from "next/image";
+import { FC } from "react";
+
+import heroImage from "@/assets/home-hero.png";
 import { Button } from "@/components/Button";
+
+import { StyledHero } from "./styled";
 
 interface Props {}
 
