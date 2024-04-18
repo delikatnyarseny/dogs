@@ -2,6 +2,9 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import * as yup from "yup";
 import emailjs from "emailjs-com";
 import { ValidationError } from "yup";
+import { StyledContactForm } from "./styled";
+import { InputField } from "@/components/InputField";
+import { Button } from "@/components/Button";
 
 interface FormData {
   [key: string]: string;
@@ -76,48 +79,56 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <StyledContactForm onSubmit={handleSubmit}>
+      <InputField
         name="firstName"
         value={formData.firstName}
         onChange={handleChange}
         placeholder="First Name"
+        error={errors.firstName}
       />
-      {errors.firstName && <p>{errors.firstName}</p>}
 
-      <input
+      <InputField
         name="lastName"
         value={formData.lastName}
         onChange={handleChange}
         placeholder="Last Name"
+        error={errors.lastName}
       />
-      {errors.lastName && <p>{errors.lastName}</p>}
 
-      <input
+      <InputField
         name="email"
         value={formData.email}
         onChange={handleChange}
         placeholder="Email"
+        error={errors.email}
       />
-      {errors.email && <p>{errors.email}</p>}
 
-      <input
+      <InputField
         name="phoneNumber"
         value={formData.phoneNumber}
         onChange={handleChange}
-        placeholder="Phone number"
+        placeholder="Phone Number"
+        error={errors.phoneNumber}
       />
-      {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
 
-      <textarea
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="Your message goes here..."
-      />
-      {errors.message && <p>{errors.message}</p>}
+      <div className="contact-input__textarea-wrapper">
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Your message goes here..."
+          className="contact-input__textarea"
+        />
 
-      <button type="submit">Send</button>
-    </form>
+        {errors.message && (
+          <p className="contact-input__textarea-error">{errors.message}</p>
+        )}
+      </div>
+
+      <Button size="lg" className="contact-input__button">
+        Submit
+      </Button>
+    </StyledContactForm>
   );
 };

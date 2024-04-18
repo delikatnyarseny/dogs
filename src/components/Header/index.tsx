@@ -4,30 +4,20 @@ import { Logo } from "@/icons/Logo";
 import { FC } from "react";
 import cn from "classnames";
 import Link from "next/link";
+import { PATHS } from "@/constants/paths";
 
-interface Props {}
-
-// remove
-const navigationItems = [
-  { label: "Home", link: "/" },
-  { label: "Info", link: "/info" },
-  { label: "Spa Services", link: "/spa-services" },
-  { label: "Book Apointment", link: "/book-apointment" },
-  { label: "Blog", link: "/blog" },
-  { label: "About us", link: "/about-us" },
-  { label: "Contact us", link: "/contact-us" },
-];
-
-export const Header: FC<Props> = () => {
+export const Header: FC = () => {
   const { asPath } = useRouter();
 
   return (
     <StyledHeader>
-      <Logo className="header-logo" />
+      <Link href="/">
+        <Logo className="header-logo" />
+      </Link>
 
       <nav className="header-nav">
         <ul className="header-nav__list">
-          {navigationItems.map(({ label, link }) => (
+          {PATHS.map(({ label, link }) => (
             <li
               key={label}
               className={cn("header-nav__list-item", {
