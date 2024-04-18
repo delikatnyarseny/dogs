@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const StyledBookingCalendar = styled.div`
   display: flex;
-  margin-top: 46px;
 
-  .booking-calendar {
+  .booking-form__calendar {
     margin-left: 42px;
   }
 `;

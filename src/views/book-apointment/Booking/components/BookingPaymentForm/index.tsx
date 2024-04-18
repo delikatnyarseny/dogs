@@ -1,7 +1,11 @@
 import { FC } from "react";
 
-interface Props {}
+interface Props {
+  className: string;
+}
 
-export const BookingPaymentForm: FC<Props> = () => {
-  return <div></div>;
+const BookingPaymentForm: FC<Props> = ({ className }) => {
+  return <div className={className}>Payment Form</div>;
 };
+
+export { BookingPaymentForm };

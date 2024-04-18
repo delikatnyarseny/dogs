@@ -5,7 +5,7 @@ import { StyledContact } from "./styled";
 
 interface Props {}
 
-export const Contact: FC<Props> = () => {
+const Contact: FC<Props> = () => {
   return (
     <StyledContact>
       <h1 className="contact-title">Contact</h1>
@@ -26,3 +26,5 @@ export const Contact: FC<Props> = () => {
     </StyledContact>
   );
 };
+
+export { Contact };

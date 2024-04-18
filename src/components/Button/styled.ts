@@ -24,4 +24,12 @@ export const StyledButton = styled.button`
   &.Button_large {
     padding: 12px 0px;
   }
+
+  &.Button_xl {
+    padding: 14px 0px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;

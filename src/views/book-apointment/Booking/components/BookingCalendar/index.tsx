@@ -6,10 +6,9 @@ import { StyledBookingCalendar } from "./styled";
 
 interface Props {}
 
-export const BookingCalendar: FC<Props> = () => {
+const BookingCalendar: FC<Props> = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  // REDUX + TS
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
@@ -18,7 +17,12 @@ export const BookingCalendar: FC<Props> = () => {
     <StyledBookingCalendar>
       <TimeSlot selectedDate={selectedDate} />
 
-      <Calendar onDateSelect={handleDateChange} className="booking-calendar" />
+      <Calendar
+        onDateSelect={handleDateChange}
+        className="booking-form__calendar"
+      />
     </StyledBookingCalendar>
   );
 };
+
+export { BookingCalendar };

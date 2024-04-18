@@ -7,5 +7,25 @@ export const StyledBooking = styled.section`
   .booking-title {
     font-size: 40px;
   }
+
+  .booking-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 46px;
+  }
+
+  .booking-form__payment-form {
+    margin-top: 66px;
+  }
+
+  .booking-form__button {
+    width: 318px;
+  }
+
+  .booking-map__wrapper {
+    width: 504px;
+    height: 747px;
+    background-color: green;
+  }
 `;
 1;

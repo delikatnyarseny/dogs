@@ -1,22 +1,22 @@
 import { FC } from "react";
 
-import { BookingCalendar } from "./components/BookingCalendar";
+import { BookingForm } from "./components/BookingForm";
 import { StyledBooking } from "./styled";
 
 interface Props {}
 
-export const Booking: FC<Props> = () => {
+const Booking: FC<Props> = () => {
   return (
     <StyledBooking>
       <h2 className="booking-title">Enter your information here</h2>
 
-      <form onSubmit={(e) => e.preventDefault()}>
-        <BookingCalendar />
+      <div className="booking-content">
+        <BookingForm />
 
-        {/* <BookingPaymentForm /> */}
-
-        <button>Book Appointment</button>
-      </form>
+        <div className="booking-map__wrapper">Map</div>
+      </div>
     </StyledBooking>
   );
 };
+
+export { Booking };

@@ -7,7 +7,7 @@ import { StyledHero } from "./styled";
 
 interface Props {}
 
-export const Hero: FC<Props> = () => {
+const Hero: FC<Props> = () => {
   return (
     <StyledHero>
       <div className="hero-image__wrapper">
@@ -20,3 +20,5 @@ export const Hero: FC<Props> = () => {
     </StyledHero>
   );
 };
+
+export { Hero };
