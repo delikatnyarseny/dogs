@@ -1,7 +1,8 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from "react";
-import { StyledButton } from "./styled";
 import cn from "classnames";
 import Link from "next/link";
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+
+import { StyledButton } from "./styled";
 
 interface ButtonProps {
   children: ReactNode;

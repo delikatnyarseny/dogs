@@ -1,31 +1,34 @@
 import styled from "styled-components";
 
 export const StyledCalendar = styled.div`
-  width: 247px;
+  width: 352px;
   text-align: center;
 
-  .header {
+  .calendar-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-  }
-
-  .month {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 700;
   }
 
-  .day-names {
+  .calendar-head__controls {
+    & > *:not(:first-child) {
+      margin-left: 16px;
+    }
+
+    & > button:last-child {
+      transform: rotate(180deg);
+    }
+  }
+
+  .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     font-weight: bold;
-    color: red;
+    color: #e89b93;
     margin-bottom: 10px;
-  }
-
-  .day-cell {
-    padding: 5px;
   }
 
   table {
@@ -37,13 +40,7 @@ export const StyledCalendar = styled.div`
     padding: 5px;
   }
 
-  .active {
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-  }
-
-  .inactive {
-    color: gray;
+  .calendar-day__inactive {
+    color: #b0b0b0;
   }
 `;

@@ -1,10 +1,12 @@
-import { useRouter } from "next/router";
-import { StyledHeader } from "./styled";
-import { Logo } from "@/icons/Logo";
-import { FC } from "react";
 import cn from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC } from "react";
+
 import { PATHS } from "@/constants/paths";
+import { Logo } from "@/icons/Logo";
+
+import { StyledHeader } from "./styled";
 
 export const Header: FC = () => {
   const { asPath } = useRouter();

@@ -1,6 +1,8 @@
-import { StylesProvider } from "@/styles/StylesProvider";
-import type { AppProps } from "next/app";
 import "@/styles/Fonts.css";
+
+import type { AppProps } from "next/app";
+
+import { StylesProvider } from "@/styles/StylesProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

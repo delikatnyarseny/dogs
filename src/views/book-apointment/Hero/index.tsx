@@ -1,7 +1,9 @@
-import { FC } from "react";
-import { StyledHero } from "./styled";
 import Image from "next/image";
+import { FC } from "react";
+
 import heroImage from "@/assets/book-appt-hero.png";
+
+import { StyledHero } from "./styled";
 
 interface Props {}
 

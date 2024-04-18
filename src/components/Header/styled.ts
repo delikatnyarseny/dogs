@@ -33,5 +33,6 @@ export const StyledHeader = styled.header`
   }
 
   .header-nav__list-item__active {
+    text-decoration: underline;
   }
 `;

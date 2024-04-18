@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { StyledFooter } from "./styled";
 
 interface Props {}

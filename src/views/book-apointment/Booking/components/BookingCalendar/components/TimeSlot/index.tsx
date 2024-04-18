@@ -1,31 +1,50 @@
-export const TimeSlot = ({ selectedDate, onTimeSlotSelect }: any) => {
-  const getAvailableTimeSlots = (date: any) => {
-    const startHour = 9;
-    const endHour = 17;
-    const availableTimeSlots = [];
+import React, { FC, useState } from "react";
 
-    for (let i = startHour; i < endHour; i++) {
-      availableTimeSlots.push(`${i} am - ${i + 1} am`);
-    }
+import { StyledTimeSlot } from "./styled";
+import { getAvailableTimeSlots } from "./utils/getAvailableTimeSlots";
 
-    return availableTimeSlots;
-  };
+interface Props {
+  selectedDate: Date;
+}
 
-  const availableTimeSlots = getAvailableTimeSlots(selectedDate);
+const TimeSlot: FC<Props> = ({ selectedDate }) => {
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
-  const handleTimeSlotClick = (timeSlot: any) => {
-    onTimeSlotSelect(timeSlot);
+  const isSaturday = selectedDate.getDay() === 6;
+  const isSunday = selectedDate.getDay() === 0;
+
+  const availableTimeSlots =
+    isSaturday || isSunday
+      ? getAvailableTimeSlots(11, 15)
+      : getAvailableTimeSlots(11, 17);
+
+  const handleSlotChange = (slot: string) => {
+    setSelectedSlot(slot === selectedSlot ? null : slot);
   };
 
   return (
-    <div>
-      <h2>Choose a timeslot on {selectedDate.toLocaleDateString()}</h2>
+    <StyledTimeSlot>
+      <h2 className="timeslot-title">
+        Choose a timeslot on {selectedDate.toLocaleDateString()}
+      </h2>
 
-      {availableTimeSlots.map((timeSlot, index) => (
-        <div key={index} onClick={() => handleTimeSlotClick(timeSlot)}>
-          {timeSlot}
-        </div>
-      ))}
-    </div>
+      <ul className="timeslot-slots">
+        {availableTimeSlots.map((timeSlot, index) => (
+          <li key={index}>
+            <label className="timeslot-slots__slot">
+              <input
+                type="checkbox"
+                value={timeSlot}
+                checked={timeSlot === selectedSlot}
+                onChange={() => handleSlotChange(timeSlot)}
+              />
+              <span className="timeslot-slots__slot-value">{timeSlot}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+    </StyledTimeSlot>
   );
 };
+
+export { TimeSlot };

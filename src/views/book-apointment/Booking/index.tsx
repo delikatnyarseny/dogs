@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { BookingCalendar } from "./components/BookingCalendar";
 import { StyledBooking } from "./styled";
 

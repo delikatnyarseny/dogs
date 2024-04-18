@@ -1,10 +1,12 @@
+import emailjs from "emailjs-com";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import * as yup from "yup";
-import emailjs from "emailjs-com";
 import { ValidationError } from "yup";
-import { StyledContactForm } from "./styled";
-import { InputField } from "@/components/InputField";
+
 import { Button } from "@/components/Button";
+import { InputField } from "@/components/InputField";
+
+import { StyledContactForm } from "./styled";
 
 interface FormData {
   [key: string]: string;
