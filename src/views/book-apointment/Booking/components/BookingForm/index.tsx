@@ -4,12 +4,13 @@ import { Button } from "@/components/Button";
 
 import { BookingCalendar } from "../BookingCalendar";
 import { BookingPaymentForm } from "../BookingPaymentForm";
+import { StyledBookingForm } from "./styled";
 
 interface Props {}
 
 const BookingForm: FC<Props> = () => {
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <StyledBookingForm onSubmit={(e) => e.preventDefault()}>
       <div>input field</div>
       <div>input field</div>
       <div>input field</div>
@@ -22,7 +23,7 @@ const BookingForm: FC<Props> = () => {
       <BookingPaymentForm className="booking-form__payment-form" />
 
       <Button className="booking-form__button">Book Appointment</Button>
-    </form>
+    </StyledBookingForm>
   );
 };
 

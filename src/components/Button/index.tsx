@@ -6,7 +6,7 @@ import { StyledButton } from "./styled";
 
 interface ButtonProps {
   children: ReactNode;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "md" | "lg" | "xl" | "xxl";
   href?: string;
   className?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
@@ -24,6 +24,7 @@ export const Button: FC<ButtonProps> = ({
     Button_medium: size === "md",
     Button_large: size === "lg",
     Button_xl: size === "xl",
+    Button_xxl: size === "xxl",
   });
 
   if (!href) {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledHero = styled.div`
+export const StyledHero = styled.section`
   position: relative;
 
   .hero-image__wrapper {

@@ -14,14 +14,6 @@ export const StyledBooking = styled.section`
     margin-top: 46px;
   }
 
-  .booking-form__payment-form {
-    margin-top: 66px;
-  }
-
-  .booking-form__button {
-    width: 318px;
-  }
-
   .booking-map__wrapper {
     width: 504px;
     height: 747px;
