@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import { FC } from "react";
 
-import { Button } from "@/components/Button";
+import { Button } from "@/ui/Button";
 
 import { StyledProductShowcase } from "./styled";
 
@@ -20,12 +20,7 @@ interface Props {
   buttonLink: string;
 }
 
-const ProductShowcase: FC<Props> = ({
-  title,
-  products,
-  buttonLabel,
-  buttonLink,
-}) => {
+const ProductShowcase: FC<Props> = ({ title, products, buttonLabel, buttonLink }) => {
   return (
     <StyledProductShowcase>
       <h2 className="showcase-title">{title}</h2>

@@ -23,13 +23,7 @@ const DateCell = ({ date, onClick }: any) => {
 const WeekRow = ({ dates, selectedDate, chosenDate, onClick }: any) => (
   <tr>
     {dates.map((date: any, index: any) => (
-      <DateCell
-        key={index}
-        date={date}
-        selectedDate={selectedDate}
-        chosenDate={chosenDate}
-        onClick={onClick}
-      />
+      <DateCell key={index} date={date} selectedDate={selectedDate} chosenDate={chosenDate} onClick={onClick} />
     ))}
   </tr>
 );
@@ -89,8 +83,8 @@ export const Calendar = ({ onDateSelect, className }: any) => {
       </div>
 
       <div className="calendar-days">
-        {DAYS.map((day) => (
-          <div key={day}>{day}</div>
+        {DAYS.map((day, index) => (
+          <div key={index}>{day}</div>
         ))}
       </div>
 

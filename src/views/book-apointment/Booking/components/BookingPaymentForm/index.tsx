@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 
-import { InputField } from "@/components/InputField";
-import { RootState , useAppDispatch } from "@/store";
+import { RootState, useAppDispatch } from "@/store";
 import { setFieldValue } from "@/store/slices/book-appointment-form-slice";
+import { InputField } from "@/ui/InputField";
 
 import { StyledBookingPaymentForm } from "./styled";
 
@@ -14,12 +14,10 @@ interface Props {
 const BookingPaymentForm: FC<Props> = ({ className }) => {
   const dispatch = useAppDispatch();
   const { creditNumber, creditCvv, creditExpire, creditName } = useSelector(
-    (state: RootState) => state.bookAppointmentForm
+    (state: RootState) => state.bookAppointmentForm,
   );
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     dispatch(setFieldValue({ field: name as any, value }));
   };
@@ -58,8 +56,8 @@ const BookingPaymentForm: FC<Props> = ({ className }) => {
       />
 
       <p>
-        Please be advised cancelling within 24 hours of your scheduled
-        appointment will result in a cancellation fee of $300.00.
+        Please be advised cancelling within 24 hours of your scheduled appointment will result in a cancellation fee of
+        $300.00.
       </p>
     </StyledBookingPaymentForm>
   );

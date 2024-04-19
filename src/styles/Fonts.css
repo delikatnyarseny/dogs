@@ -2,7 +2,8 @@
   font-family: Cormorant;
   font-weight: 700;
   font-style: normal;
-  src: url("/fonts/Cormorant/Cormorant-Bold.woff2") format("woff2"),
+  src:
+    url("/fonts/Cormorant/Cormorant-Bold.woff2") format("woff2"),
     url("/fonts/Cormorant/Cormorant-Bold.woff") format("woff");
   font-display: swap;
 }
@@ -11,7 +12,18 @@
   font-family: Cormorant;
   font-weight: 400;
   font-style: normal;
-  src: url("/fonts/Cormorant/Cormorant-Regular.woff2") format("woff2"),
+  src:
+    url("/fonts/Cormorant/Cormorant-Regular.woff2") format("woff2"),
     url("/fonts/Cormorant/Cormorant-Regular.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: normal;
+  src:
+    url("/fonts/Poppins/Poppins-Medium.woff2") format("woff2"),
+    url("/fonts/Poppins/Poppins-Medium.woff") format("woff");
   font-display: swap;
 }

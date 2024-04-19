@@ -26,9 +26,16 @@ export const StyledCalendar = styled.div`
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors["pink-kisses"]};
     margin-bottom: 10px;
+
+    color: ${({ theme }) => theme.colors["pink-kisses"]};
+  }
+
+  .calendar-days,
+  table {
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 500;
   }
 
   table {

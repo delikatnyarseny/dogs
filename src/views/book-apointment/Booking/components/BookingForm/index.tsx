@@ -1,6 +1,6 @@
 import { FC, FormEvent } from "react";
 
-import { Button } from "@/components/Button";
+import { Button } from "@/ui/Button";
 
 import { BookingCalendar } from "../BookingCalendar";
 import { BookingPaymentForm } from "../BookingPaymentForm";

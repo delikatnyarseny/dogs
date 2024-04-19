@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 
 import heroImage from "@/assets/home-hero.png";
-import { Button } from "@/components/Button";
+import { Button } from "@/ui/Button";
 
 import { StyledHero } from "./styled";
 

@@ -12,13 +12,7 @@ interface ButtonProps {
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }
 
-export const Button: FC<ButtonProps> = ({
-  size = "md",
-  href,
-  children,
-  className,
-  type,
-}) => {
+export const Button: FC<ButtonProps> = ({ size = "md", href, children, className, type }) => {
   const buttonClassName = cn(className, {
     Button_small: size === "sm",
     Button_medium: size === "md",
