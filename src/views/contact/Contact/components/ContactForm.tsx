@@ -1,18 +1,20 @@
 import emailjs from "emailjs-com";
 import React, { FormEvent } from "react";
+import { useSelector } from "react-redux";
 import * as yup from "yup";
 import { ValidationError } from "yup";
-import { InputField } from "@/components/InputField";
+
 import { Button } from "@/components/Button";
-import { RootState } from "@/store";
+import { InputField } from "@/components/InputField";
+import { RootState, useAppDispatch } from "@/store";
 import {
-  setErrors,
   clearForm,
-  setFieldValue,
-  FormFieldKey,
   FormErrors,
-} from "@/store/slices/contact-us-slice";
-import { useDispatch, useSelector } from "react-redux";
+  FormFieldKey,
+  setErrors,
+  setFieldValue,
+} from "@/store/slices/contact-us-form-slice";
+
 import { StyledContactForm } from "./styled";
 
 const schema = yup.object().shape({
@@ -31,7 +33,7 @@ type EmailJSDataType = {
 };
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { form, errors } = useSelector(
     (state: RootState) => state.contactUsForm
   );
@@ -52,17 +54,17 @@ export const ContactForm = () => {
 
       emailjs
         .send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
           form as unknown as EmailJSDataType,
-          process.env.NEXT_PUBLIC_EMAILJS_USER_PUBLIC_KEY!
+          process.env.NEXT_PUBLIC_EMAILJS_USER_PUBLIC_KEY
         )
         .then(
           () => {
             dispatch(clearForm());
           },
           (error) => {
-            console.log("Something went wrong", error);
+            console.error("Something went wrong", error);
           }
         );
     } catch (error) {

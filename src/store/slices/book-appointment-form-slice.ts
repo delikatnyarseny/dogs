@@ -1,19 +1,17 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 
 interface FormState {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  timeslot: string;
-  choosenDate: Date | null;
+  choosenTimeslot: string;
+  choosenDate: string;
   specialRequests: string;
-  creditCard: {
-    number: string;
-    expire: string;
-    cvv: string;
-    name: string;
-  };
+  creditNumber: string;
+  creditExpire: string;
+  creditCvv: string;
+  creditName: string;
 }
 
 const initialState: FormState = {
@@ -21,65 +19,29 @@ const initialState: FormState = {
   lastName: "",
   email: "",
   phone: "",
-  timeslot: "",
-  choosenDate: null,
+  choosenTimeslot: "",
+  choosenDate: "",
   specialRequests: "",
-  creditCard: {
-    number: "",
-    expire: "",
-    cvv: "",
-    name: "",
-  },
+  creditNumber: "",
+  creditExpire: "",
+  creditCvv: "",
+  creditName: "",
 };
 
 const bookAppointmentFormSlice = createSlice({
-  name: "form",
+  name: "bookAppointmentForm",
   initialState,
   reducers: {
-    setFirstName(state, action: PayloadAction<string>) {
-      state.firstName = action.payload;
-    },
-    setLastName(state, action: PayloadAction<string>) {
-      state.lastName = action.payload;
-    },
-    setEmail(state, action: PayloadAction<string>) {
-      state.email = action.payload;
-    },
-    setPhone(state, action: PayloadAction<string>) {
-      state.phone = action.payload;
-    },
-    setTimeslot(state, action: PayloadAction<string>) {
-      state.timeslot = action.payload;
-    },
-    setChoosenDate(state, action: PayloadAction<Date>) {
-      state.choosenDate = action.payload;
-    },
-    setSpecialRequests(state, action: PayloadAction<string>) {
-      state.specialRequests = action.payload;
-    },
-    setCreditCard(
+    setFieldValue(
       state,
-      action: PayloadAction<{
-        number: string;
-        expire: string;
-        cvv: string;
-        name: string;
-      }>
+      action: PayloadAction<{ field: keyof FormState; value: string }>
     ) {
-      state.creditCard = action.payload;
+      const { field, value } = action.payload;
+      state[field] = value;
     },
   },
 });
 
-export const {
-  setFirstName,
-  setLastName,
-  setEmail,
-  setPhone,
-  setTimeslot,
-  setChoosenDate,
-  setSpecialRequests,
-  setCreditCard,
-} = bookAppointmentFormSlice.actions;
+export const { setFieldValue } = bookAppointmentFormSlice.actions;
 
 export default bookAppointmentFormSlice.reducer;

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
 
 import { Button } from "@/components/Button";
 
@@ -9,20 +9,21 @@ import { StyledBookingForm } from "./styled";
 interface Props {}
 
 const BookingForm: FC<Props> = () => {
-  return (
-    <StyledBookingForm onSubmit={(e) => e.preventDefault()}>
-      <div>input field</div>
-      <div>input field</div>
-      <div>input field</div>
-      <div>input field</div>
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+  };
 
+  return (
+    <StyledBookingForm onSubmit={handleSubmit}>
       <BookingCalendar />
 
       <div>input field</div>
 
       <BookingPaymentForm className="booking-form__payment-form" />
 
-      <Button className="booking-form__button">Book Appointment</Button>
+      <Button type="submit" className="booking-form__button">
+        Book Appointment
+      </Button>
     </StyledBookingForm>
   );
 };

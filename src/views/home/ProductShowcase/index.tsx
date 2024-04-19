@@ -1,8 +1,9 @@
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { FC } from "react";
-import { StyledProductShowcase } from "./styled";
-import Image from "next/image";
+
 import { Button } from "@/components/Button";
+
+import { StyledProductShowcase } from "./styled";
 
 interface Props {
   title: string;

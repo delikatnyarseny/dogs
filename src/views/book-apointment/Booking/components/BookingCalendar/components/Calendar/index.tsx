@@ -71,7 +71,7 @@ export const Calendar = ({ onDateSelect, className }: any) => {
         <span>Select dates</span>
 
         <div className="calendar-head__controls">
-          <button onClick={() => changeDate(-1)}>
+          <button type="button" onClick={() => changeDate(-1)}>
             <ChevronLeft />
           </button>
 
@@ -82,15 +82,15 @@ export const Calendar = ({ onDateSelect, className }: any) => {
             })}
           </span>
 
-          <button onClick={() => changeDate(1)}>
+          <button type="button" onClick={() => changeDate(1)}>
             <ChevronLeft />
           </button>
         </div>
       </div>
 
       <div className="calendar-days">
-        {DAYS.map((day, index) => (
-          <div key={index}>{day}</div>
+        {DAYS.map((day) => (
+          <div key={day}>{day}</div>
         ))}
       </div>
 
