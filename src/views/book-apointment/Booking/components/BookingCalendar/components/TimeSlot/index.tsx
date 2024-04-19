@@ -13,10 +13,7 @@ const TimeSlot: FC<Props> = ({ selectedDate }) => {
   const isSaturday = selectedDate.getDay() === 6;
   const isSunday = selectedDate.getDay() === 0;
 
-  const availableTimeSlots =
-    isSaturday || isSunday
-      ? getAvailableTimeSlots(11, 15)
-      : getAvailableTimeSlots(11, 17);
+  const availableTimeSlots = isSaturday || isSunday ? getAvailableTimeSlots(11, 15) : getAvailableTimeSlots(11, 17);
 
   const handleSlotChange = (slot: string) => {
     setSelectedSlot(slot === selectedSlot ? null : slot);
@@ -24,9 +21,7 @@ const TimeSlot: FC<Props> = ({ selectedDate }) => {
 
   return (
     <StyledTimeSlot>
-      <h2 className="timeslot-title">
-        Choose a timeslot on {selectedDate.toLocaleDateString()}
-      </h2>
+      <h2 className="timeslot-title">Choose a timeslot on {selectedDate.toLocaleDateString()}</h2>
 
       <ul className="timeslot-slots">
         {availableTimeSlots.map((timeSlot, index) => (

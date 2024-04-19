@@ -21,16 +21,8 @@ const Logo: FC<Props> = ({ className }) => {
       />
       <rect x="10" width="118" height="67" fill="url(#pattern0_14_2751)" />
       <defs>
-        <pattern
-          id="pattern0_14_2751"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_14_2751"
-            transform="matrix(0.00111857 0 0 0.00197002 0 -0.177685)"
-          />
+        <pattern id="pattern0_14_2751" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_14_2751" transform="matrix(0.00111857 0 0 0.00197002 0 -0.177685)" />
         </pattern>
         <image
           id="image0_14_2751"

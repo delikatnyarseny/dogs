@@ -14,12 +14,9 @@ const Contact: FC<Props> = () => {
 
       <p className="contact-description">
         For customer service inquiries, please email us at{" "}
-        <a href="mailto:customerservice@luxeanimalspa.ca">
-          customerservice@luxeanimalspa.ca.
-        </a>{" "}
-        For spa inquiries, please include your animal’s name for faster service.
-        For your protection, please do not include your credit card or banking
-        information details in your email.
+        <a href="mailto:customerservice@luxeanimalspa.ca">customerservice@luxeanimalspa.ca.</a> For spa inquiries,
+        please include your animal’s name for faster service. For your protection, please do not include your credit
+        card or banking information details in your email.
       </p>
 
       <ContactForm />

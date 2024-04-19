@@ -17,10 +17,7 @@ const BookingCalendar: FC<Props> = () => {
     <StyledBookingCalendar>
       <TimeSlot selectedDate={selectedDate} />
 
-      <Calendar
-        onDateSelect={handleDateChange}
-        className="booking-form__calendar"
-      />
+      <Calendar onDateSelect={handleDateChange} className="booking-form__calendar" />
     </StyledBookingCalendar>
   );
 };

@@ -1,11 +1,6 @@
 {
   "extends": "next/core-web-vitals",
-  "plugins": [
-    "simple-import-sort",
-    "unused-imports",
-    "react-hooks",
-    "jsx-a11y"
-  ],
+  "plugins": ["simple-import-sort", "unused-imports", "react-hooks", "jsx-a11y"],
 
   "rules": {
     "simple-import-sort/imports": "error",

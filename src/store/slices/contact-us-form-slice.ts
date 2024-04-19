@@ -32,10 +32,7 @@ const formSlice = createSlice({
   name: "contactUsForm",
   initialState,
   reducers: {
-    setFieldValue(
-      state,
-      action: PayloadAction<{ field: keyof FormValues; value: string }>
-    ) {
+    setFieldValue(state, action: PayloadAction<{ field: keyof FormValues; value: string }>) {
       const { field, value } = action.payload;
       state.form[field] = value;
     },

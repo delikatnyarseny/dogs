@@ -1,4 +1,4 @@
-import { createSlice,PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FormState {
   firstName: string;
@@ -32,10 +32,7 @@ const bookAppointmentFormSlice = createSlice({
   name: "bookAppointmentForm",
   initialState,
   reducers: {
-    setFieldValue(
-      state,
-      action: PayloadAction<{ field: keyof FormState; value: string }>
-    ) {
+    setFieldValue(state, action: PayloadAction<{ field: keyof FormState; value: string }>) {
       const { field, value } = action.payload;
       state[field] = value;
     },

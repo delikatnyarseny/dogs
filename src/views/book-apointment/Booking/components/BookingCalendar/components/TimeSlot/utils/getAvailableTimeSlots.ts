@@ -8,9 +8,7 @@ export const getAvailableTimeSlots = (startHour: number, endHour: number) => {
     const startPeriod = i < 12 ? "am" : "pm";
     const endPeriod = i + 1 < 12 ? "am" : "pm";
 
-    availableTimeSlots.push(
-      `${startTime} ${startPeriod} - ${endTime} ${endPeriod}`
-    );
+    availableTimeSlots.push(`${startTime} ${startPeriod} - ${endTime} ${endPeriod}`);
   }
 
   return availableTimeSlots;

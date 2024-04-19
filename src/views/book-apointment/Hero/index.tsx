@@ -14,9 +14,7 @@ const Hero: FC<Props> = () => {
         <Image src={heroImage} fill alt="happy dog" className="hero-image" />
       </div>
 
-      <h1 className="hero-title">
-        Book An Appointment With Our Groom Specialist Today!
-      </h1>
+      <h1 className="hero-title">Book An Appointment With Our Groom Specialist Today!</h1>
     </StyledHero>
   );
 };
