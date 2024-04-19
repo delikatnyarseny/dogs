@@ -1,3 +1,3 @@
 module.exports = {
-  "**/*.{ts,tsx}": ["yarn lint:fix"],
+  "**/*.{ts,tsx}": ["yarn lint:fix", "prettier --write"],
 };
