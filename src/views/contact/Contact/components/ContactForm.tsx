@@ -1,16 +1,19 @@
 import emailjs from "emailjs-com";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { FormEvent } from "react";
 import * as yup from "yup";
 import { ValidationError } from "yup";
-
-import { Button } from "@/components/Button";
 import { InputField } from "@/components/InputField";
-
+import { Button } from "@/components/Button";
+import { RootState } from "@/store";
+import {
+  setErrors,
+  clearForm,
+  setFieldValue,
+  FormFieldKey,
+  FormErrors,
+} from "@/store/slices/contact-us-slice";
+import { useDispatch, useSelector } from "react-redux";
 import { StyledContactForm } from "./styled";
-
-interface FormData {
-  [key: string]: string;
-}
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
@@ -23,47 +26,40 @@ const schema = yup.object().shape({
   message: yup.string().required("Message is required"),
 });
 
-export const ContactForm = () => {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    message: "",
-  });
+type EmailJSDataType = {
+  [key: string]: string;
+};
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const { form, errors } = useSelector(
+    (state: RootState) => state.contactUsForm
+  );
 
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    dispatch(setFieldValue({ field: name as FormFieldKey, value }));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      await schema.validate(formData, { abortEarly: false });
-      setErrors({});
+      await schema.validate(form, { abortEarly: false });
+      dispatch(setErrors({}));
+
       emailjs
         .send(
-          // replace with d.ts file
           process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
           process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-          formData,
+          form as unknown as EmailJSDataType,
           process.env.NEXT_PUBLIC_EMAILJS_USER_PUBLIC_KEY!
         )
         .then(
           () => {
-            setFormData({
-              firstName: "",
-              lastName: "",
-              email: "",
-              phoneNumber: "",
-              message: "",
-            });
+            dispatch(clearForm());
           },
           (error) => {
             console.log("Something went wrong", error);
@@ -71,11 +67,11 @@ export const ContactForm = () => {
         );
     } catch (error) {
       if (error instanceof ValidationError) {
-        const newErrors: Record<string, string> = {};
+        const newErrors: FormErrors = {};
         error.inner.forEach((err) => {
-          if (err.path) newErrors[err.path] = err.message;
+          if (err.path) newErrors[err.path as FormFieldKey] = err.message;
         });
-        setErrors(newErrors);
+        dispatch(setErrors(newErrors));
       }
     }
   };
@@ -84,7 +80,7 @@ export const ContactForm = () => {
     <StyledContactForm onSubmit={handleSubmit}>
       <InputField
         name="firstName"
-        value={formData.firstName}
+        value={form.firstName}
         onChange={handleChange}
         placeholder="First Name"
         error={errors.firstName}
@@ -92,7 +88,7 @@ export const ContactForm = () => {
 
       <InputField
         name="lastName"
-        value={formData.lastName}
+        value={form.lastName}
         onChange={handleChange}
         placeholder="Last Name"
         error={errors.lastName}
@@ -100,7 +96,7 @@ export const ContactForm = () => {
 
       <InputField
         name="email"
-        value={formData.email}
+        value={form.email}
         onChange={handleChange}
         placeholder="Email"
         error={errors.email}
@@ -108,7 +104,7 @@ export const ContactForm = () => {
 
       <InputField
         name="phoneNumber"
-        value={formData.phoneNumber}
+        value={form.phoneNumber}
         onChange={handleChange}
         placeholder="Phone Number"
         error={errors.phoneNumber}
@@ -117,7 +113,7 @@ export const ContactForm = () => {
       <div className="contact-input__textarea-wrapper">
         <textarea
           name="message"
-          value={formData.message}
+          value={form.message}
           onChange={handleChange}
           placeholder="Your message goes here..."
           className="contact-input__textarea"

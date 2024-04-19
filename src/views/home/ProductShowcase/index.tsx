@@ -40,7 +40,9 @@ const ProductShowcase: FC<Props> = ({
 
             <div className="showcase-item__content">
               <p>{name}</p>
+
               <p>{producer}</p>
+
               <p className="showcase-item__price">{price}</p>
             </div>
           </li>

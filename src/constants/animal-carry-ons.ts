@@ -2,7 +2,7 @@ import carryOn1Image from "@/assets/animal-carry-on-1.png";
 import carryOn2Image from "@/assets/animal-carry-on-2.png";
 import carryOn3Image from "@/assets/animal-carry-on-3.png";
 
-export const animalCarryOns = [
+export const ANIMAL_CARRY_ONS = [
   {
     image: { src: carryOn1Image, alt: "carry-on-1-image" },
     name: "Leather Dog Collars with Gold Name Tag",

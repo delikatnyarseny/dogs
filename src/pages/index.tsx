@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
-import { animalCarryOns } from "@/constants/animal-carry-ons";
-import { dogCollors } from "@/constants/dog-collars";
+import { ANIMAL_CARRY_ONS } from "@/constants/animal-carry-ons";
+import { DOG_COLLARS } from "@/constants/dog-collars";
 import { Hero } from "@/views/home/Hero";
 import { ProductShowcase } from "@/views/home/ProductShowcase";
 
@@ -10,13 +10,13 @@ export default function Home() {
       <Hero />
       <ProductShowcase
         title={"Dog Collars"}
-        products={dogCollors}
+        products={DOG_COLLARS}
         buttonLabel={"See More Dog Collars"}
         buttonLink={"#"}
       />
       <ProductShowcase
         title={"Animal Carry Ons"}
-        products={animalCarryOns}
+        products={ANIMAL_CARRY_ONS}
         buttonLabel={"See More Carry Ons"}
         buttonLink={"#"}
       />
