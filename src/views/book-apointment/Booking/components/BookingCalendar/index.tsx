@@ -1,25 +1,32 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 
 import { Calendar } from "./components/Calendar";
 import { TimeSlot } from "./components/TimeSlot";
 import { StyledBookingCalendar } from "./styled";
 
-interface Props {}
+interface Props {
+  className: string;
+  handleFormDateChange: (value: string) => void;
+}
 
-const BookingCalendar: FC<Props> = () => {
+const BookingCalendar: FC<Props> = memo(({ className, handleFormDateChange }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const handleDateChange = (date: Date) => {
+  const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
   };
 
   return (
-    <StyledBookingCalendar>
-      <TimeSlot selectedDate={selectedDate} />
+    <StyledBookingCalendar className={className}>
+      <TimeSlot selectedDate={selectedDate} handleFormDateChange={handleFormDateChange} />
 
-      <Calendar onDateSelect={handleDateChange} className="booking-form__calendar" />
+      <Calendar
+        className="booking-calendar__calendar-widget"
+        handleDateSelect={handleDateSelect}
+        selectedDate={selectedDate}
+      />
     </StyledBookingCalendar>
   );
-};
+});
 
 export { BookingCalendar };

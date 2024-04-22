@@ -1,7 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "plugins": ["simple-import-sort", "unused-imports", "react-hooks", "jsx-a11y"],
-
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
@@ -12,6 +11,7 @@
     "react/no-array-index-key": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/display-name": "off",
     "react/jsx-filename-extension": [
       "warn",
       {

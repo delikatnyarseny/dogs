@@ -1,4 +1,4 @@
-export const getAvailableTimeSlots = (startHour: number, endHour: number) => {
+const getAvailableTimeSlots = (startHour: number, endHour: number) => {
   const availableTimeSlots = [];
 
   for (let i = startHour; i < endHour; i++) {
@@ -13,3 +13,5 @@ export const getAvailableTimeSlots = (startHour: number, endHour: number) => {
 
   return availableTimeSlots;
 };
+
+export { getAvailableTimeSlots };

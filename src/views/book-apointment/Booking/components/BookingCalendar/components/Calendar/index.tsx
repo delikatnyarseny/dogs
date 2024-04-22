@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { DAYS } from "@/constants/days";
 import { ChevronLeft } from "@/icons/ChevronLeft";
@@ -28,8 +28,13 @@ const WeekRow = ({ dates, selectedDate, chosenDate, onClick }: any) => (
   </tr>
 );
 
-export const Calendar = ({ onDateSelect, className }: any) => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+interface Props {
+  className: string;
+  selectedDate: Date;
+  handleDateSelect: (date: Date) => void;
+}
+
+export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className }) => {
   const [chosenDate, setChosenDate] = useState<any>(null);
 
   useEffect(() => {
@@ -42,16 +47,16 @@ export const Calendar = ({ onDateSelect, className }: any) => {
   const changeDate = (change: number) => {
     const newDate = new Date(selectedDate);
     newDate.setMonth(newDate.getMonth() + change);
-    setSelectedDate(newDate);
+    handleDateSelect(newDate);
 
     localStorage.setItem("chosenDate", newDate.toISOString());
   };
 
   const selectDate = (date: any) => {
     if (date <= new Date()) return;
-    setSelectedDate(date);
+    handleDateSelect(date);
     setChosenDate(date);
-    onDateSelect(date);
+
     localStorage.setItem("chosenDate", date.toISOString());
   };
 

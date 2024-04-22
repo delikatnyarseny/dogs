@@ -37,6 +37,11 @@ export const StyledTimeSlot = styled.div`
         border: none;
       }
     }
+
+    &:focus-within {
+      outline: 1px solid ${({ theme }) => theme.colors["charcoal"]};
+      border-radius: 4px;
+    }
   }
 
   .timeslot-slots__slot-value {

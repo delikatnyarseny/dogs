@@ -1,4 +1,4 @@
-export const getDaysInMonth = (selectedDate: Date) => {
+const getDaysInMonth = (selectedDate: Date) => {
   const days = [];
   const selectedDateYear = selectedDate.getFullYear();
   const selectedDateMonth = selectedDate.getMonth();
@@ -11,7 +11,7 @@ export const getDaysInMonth = (selectedDate: Date) => {
 
   const startDayOfWeek = firstDayOfMonth.getDay();
 
-  // add the last days of the last month, to fill in the blank spaces
+  // add the last days of the last month, to fill in the blank spaces (re: design)
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
     const prevDate = new Date(lastDayOfPrevMonth);
     prevDate.setDate(prevDate.getDate() - i);
@@ -26,3 +26,5 @@ export const getDaysInMonth = (selectedDate: Date) => {
 
   return days;
 };
+
+export { getDaysInMonth };
