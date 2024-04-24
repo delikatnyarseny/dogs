@@ -1,8 +1,10 @@
 import React, { FC, FormEvent, useCallback, useState } from "react";
 import * as yup from "yup";
 
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { Button } from "@/ui/Button";
 import { InputField } from "@/ui/InputField";
+import { Modal } from "@/ui/Modal";
 import { TextAreaField } from "@/ui/TextAreaField";
 
 import { BookingCalendar } from "../BookingCalendar";
@@ -51,12 +53,16 @@ const BookingForm: FC = () => {
     creditName: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  useLockBodyScroll(isModalOpen);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       setErrors({});
+      setModalOpen(true);
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const newErrors = err.inner.reduce((acc: FormErrors, error) => {
@@ -77,6 +83,11 @@ const BookingForm: FC = () => {
 
   const handleFormDateChange = (value: string) => {
     setFormData((prev) => ({ ...prev, choosenTimeslot: value }));
+  };
+
+  const handleSaveToLocalStorage = () => {
+    localStorage.setItem("bookingFormData", JSON.stringify(formData));
+    setModalOpen(false); // Optionally close the modal after saving
   };
 
   return (
@@ -112,7 +123,6 @@ const BookingForm: FC = () => {
         />
       </div>
 
-      {/*OPTIMIZE RE-RENDERS */}
       <BookingCalendar handleFormDateChange={handleFormDateChange} className="booking-form__calendar" />
 
       <TextAreaField
@@ -141,6 +151,17 @@ const BookingForm: FC = () => {
       <Button type="submit" className="booking-form__button">
         Book Appointment
       </Button>
+
+      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+        <div>
+          {Object.entries(formData).map(([key, value]) => (
+            <div key={key}>{`${key}: ${value}`}</div>
+          ))}
+          <Button onClick={handleSaveToLocalStorage}>Save to Local Storage</Button>
+        </div>
+
+        <button onClick={() => setModalOpen(false)}>X</button>
+      </Modal>
     </StyledBookingForm>
   );
 };

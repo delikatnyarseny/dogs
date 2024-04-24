@@ -10,9 +10,10 @@ interface ButtonProps {
   href?: string;
   className?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  onClick?: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({ size = "md", href, children, className, type }) => {
+export const Button: FC<ButtonProps> = ({ size = "md", href, children, className, type, onClick }) => {
   const buttonClassName = cn(className, {
     Button_small: size === "sm",
     Button_medium: size === "md",
@@ -23,7 +24,7 @@ export const Button: FC<ButtonProps> = ({ size = "md", href, children, className
 
   if (!href) {
     return (
-      <StyledButton type={type} className={buttonClassName}>
+      <StyledButton type={type} className={buttonClassName} onClick={onClick}>
         {children}
       </StyledButton>
     );

@@ -1,3 +1,9 @@
+import {
+  CreateOrderActions,
+  CreateOrderData,
+  OnApproveActions,
+  OnApproveData,
+} from "@paypal/paypal-js/types/components/buttons";
 import { FUNDING, PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import React, { FC, memo } from "react";
 
@@ -35,50 +41,22 @@ const areEqual = (prevProps: Props, nextProps: Props) => {
 
 const BookingPaymentForm: FC<Props> = memo(
   ({ className, creditNumber, creditExpire, creditCvv, creditName, errors, handleInputChange }) => {
-    const createOrder = () => {
-      return fetch("https://api-m.sandbox.paypal.com/v2/checkout/orders", {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer A21AAJ9M749pLYz6wfGdmA6dkG8jhGaAvV3wRhmwcpk80ns9kxU4IKqFaaisz8KcFh5YGhSGStBSfehEU3rkki_Tk_o086uPQ",
-          "PayPal-Request-Id": "123456778912456",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          intent: "CAPTURE",
-          purchase_units: [
-            {
-              amount: {
-                currency_code: "USD",
-                value: "100.00",
-              },
-            },
-          ],
-          payment_source: {
-            card: {
-              number: "4111111111111111",
-              expiry: "2024-08",
-              name: "Firstname Lastname",
-              billing_address: {
-                address_line_1: "2211 N First Street",
-                address_line_2: "Building 17",
-                admin_area_2: "San Jose",
-                admin_area_1: "CA",
-                postal_code: "95131",
-                country_code: "US",
-              },
-              attributes: {
-                verification: {
-                  method: "SCA_WHEN_REQUIRED",
-                },
-                vault: {
-                  store_in_vault: "ON_SUCCESS",
-                },
-              },
+    const createOrder = (data: CreateOrderData, actions: CreateOrderActions) => {
+      return actions.order.create({
+        intent: "CAPTURE",
+        purchase_units: [
+          {
+            amount: {
+              currency_code: "USD",
+              value: "200.00",
             },
           },
-        }),
-      }).then((response) => response.json());
+        ],
+      });
+    };
+
+    const handleApprove = async (data: OnApproveData, actions: OnApproveActions) => {
+      const order = await actions.order?.capture();
     };
 
     return (
@@ -119,7 +97,12 @@ const BookingPaymentForm: FC<Props> = memo(
             />
           </div>
 
-          <PayPalButtons style={{ layout: "horizontal" }} createOrder={createOrder} fundingSource={FUNDING.CARD} />
+          <PayPalButtons
+            style={{ layout: "horizontal" }}
+            createOrder={createOrder}
+            fundingSource={FUNDING.CARD}
+            onApprove={handleApprove}
+          />
 
           <p className="payment-note">
             Please be advised cancelling within 24 hours of your scheduled appointment will result in a cancellation fee
