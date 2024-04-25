@@ -9,7 +9,7 @@ const theme = {
   colors: {
     beige: "#F3DED7",
     charcoal: "#4C4C4B",
-    "rosey-cheek": "#DFB249",
+    "rosey-cheek": "#DFB2A9",
     "bronsed-rose": "#B78E80",
     "pink-kisses": "#E89B93",
     "soft-purple": "#FFDAE9",

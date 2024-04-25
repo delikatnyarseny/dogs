@@ -4,7 +4,7 @@ import { DOG_COLLARS } from "@/constants/dog-collars";
 import { Hero } from "@/views/home/Hero";
 import { ProductShowcase } from "@/views/home/ProductShowcase";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <Layout>
       <Hero />
