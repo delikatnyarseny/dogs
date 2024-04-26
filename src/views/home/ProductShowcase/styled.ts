@@ -38,7 +38,7 @@ export const StyledProductShowcase = styled.section`
     width: 100%;
     height: 460px;
     padding: 7px;
-    background-color: #e89b93;
+    background-color: ${({ theme }) => theme.colors["pink-kisses"]};
   }
 
   .showcase-item__content {
