@@ -1,11 +1,32 @@
 {
-  "extends": "next/core-web-vitals",
-  "plugins": ["simple-import-sort", "unused-imports", "react-hooks", "jsx-a11y"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": [
+    "simple-import-sort",
+    "unused-imports",
+    "react-hooks",
+    "jsx-a11y"
+  ],
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "no-console": ["error", { "allow": ["error", "warn"] }],
-    "import/no-duplicates": ["error", { "prefer-inline": true }],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "error",
+          "warn"
+        ]
+      }
+    ],
+    "import/no-duplicates": [
+      "error",
+      {
+        "prefer-inline": true
+      }
+    ],
     "unused-imports/no-unused-imports": "error",
     "no-use-before-define": "off",
     "react/no-array-index-key": "off",
@@ -15,7 +36,9 @@
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [".tsx"]
+        "extensions": [
+          ".tsx"
+        ]
       }
     ],
     "jsx-a11y/accessible-emoji": "warn",

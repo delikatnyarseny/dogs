@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 
 import { StyledButton } from "./styled";
 
-interface ButtonProps {
+export interface ButtonProps {
   children: ReactNode;
   size?: "sm" | "md" | "lg" | "xl" | "xxl";
   href?: string;
