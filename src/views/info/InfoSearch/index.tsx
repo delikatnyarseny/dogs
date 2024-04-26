@@ -1,60 +1,75 @@
-import axios from "axios";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { gql, useQuery } from "@apollo/client";
+import React, { ChangeEvent, FC, useState } from "react";
 
-import { StyledInfoSearch } from "./styled";
+import { Dog } from "@/interfaces/IDogInfo";
+import { SearchInput } from "@/ui/SearchInput";
+
+import { DogInfo } from "./components/DogInfo";
+import { DropdownItem, DropdownList, StyledInfoSearch } from "./styled";
 import useDebounce from "./useDebounce";
 
-interface Dog {
-  name: string;
-  image_link: string;
-}
+const GET_DOGS_BY_NAME = gql`
+  query GetDogsByName($name: String!) {
+    dogsByName(name: $name) @rest(type: "Dog", path: "dogs?name={args.name}") {
+      name
+      image_link
+      energy
+      min_life_expectancy
+      good_with_strangers
+      good_with_other_dogs
+    }
+  }
+`;
 
-const InfoSearch: React.FC = () => {
+const InfoSearch: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Dog[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const debouncedValue = useDebounce(inputValue, 500);
+  const [selectedDog, setSelectedDog] = useState<Dog | null>(null);
+  const debouncedValue = useDebounce(inputValue, 300);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    setShowDropdown(true);
   };
+  const { data, loading, error } = useQuery<{ dogsByName: Dog[] }>(GET_DOGS_BY_NAME, {
+    variables: { name: debouncedValue },
+    skip: !debouncedValue,
+  });
 
-  const fetchResults = async (query: string) => {
-    try {
-      setLoading(true);
-      const response = await axios.get<Dog[]>(`https://api.api-ninjas.com/v1/dogs?name=${query}`, {
-        headers: {
-          "x-api-key": "noZB2jRaDwoaCOtPRefMqA==HXf2dolu6fqd8Cle",
-        },
-      });
-      setSearchResults(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-      setLoading(false);
-    }
+  const handleDogSelect = (dog: Dog) => {
+    setSelectedDog(dog);
+    setInputValue("");
+    setShowDropdown(false);
   };
-
-  useEffect(() => {
-    if (debouncedValue) {
-      fetchResults(debouncedValue);
-    } else {
-      setSearchResults([]);
-    }
-  }, [debouncedValue]);
 
   return (
     <StyledInfoSearch>
-      <input type="text" value={inputValue} onChange={handleChange} placeholder="Search for dogs by name..." />
-      {loading && <p>Loading...</p>}
-      <ul>
-        {searchResults.map((dog) => (
-          <li key={dog.name}>
-            <img src={dog.image_link} alt={dog.name} />
-            <p>Name: {dog.name}</p>
-          </li>
-        ))}
-      </ul>
+      <h1 className="info-title">INFO DOG</h1>
+
+      <div className="info-search__container">
+        <p className="info-search__selection">
+          Current Selection: <span>{selectedDog?.name}</span>
+        </p>
+
+        <div className="info-search__wrapper">
+          <SearchInput value={inputValue} placeholder="Search" onChange={handleChange} />
+
+          {data && showDropdown && (
+            <DropdownList>
+              {data.dogsByName.map((dog) => (
+                <DropdownItem key={dog.name} onClick={() => handleDogSelect(dog)}>
+                  <img src={dog.image_link} alt={dog.name} />
+                  <p>{dog.name}</p>
+                </DropdownItem>
+              ))}
+            </DropdownList>
+          )}
+        </div>
+      </div>
+
+      {error && <p>Error!</p>}
+
+      {selectedDog && <DogInfo data={selectedDog} />}
     </StyledInfoSearch>
   );
 };

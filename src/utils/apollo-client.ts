@@ -1,10 +1,17 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { RestLink } from "apollo-link-rest";
 
-const createApolloClient = () => {
-  return new ApolloClient({
-    uri: `endpoint`,
-    cache: new InMemoryCache(),
-  });
-};
+const restLink = new RestLink({
+  uri: "https://api.api-ninjas.com/v1/", // базовый URL для REST запросов
+  headers: {
+    "X-Api-Key": "noZB2jRaDwoaCOtPRefMqA==HXf2dolu6fqd8Cle",
+    "Content-Type": "application/json",
+  },
+});
 
-export default createApolloClient;
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: restLink,
+});
+
+export default client;

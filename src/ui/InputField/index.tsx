@@ -11,7 +11,7 @@ interface Props {
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export const InputField: FC<Props> = ({ className, name, value, placeholder, error, onChange }) => {
+const InputField: FC<Props> = ({ className, name, value, placeholder, error, onChange }) => {
   return (
     <StyledInputField className={className}>
       <input name={name} value={value} onChange={onChange} placeholder={placeholder} className="input-field__input" />
@@ -20,3 +20,5 @@ export const InputField: FC<Props> = ({ className, name, value, placeholder, err
     </StyledInputField>
   );
 };
+
+export { InputField };

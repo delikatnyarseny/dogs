@@ -1,17 +1,21 @@
 import "@/styles/Fonts.css";
 
+import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 
 import store from "@/store";
 import { StylesProvider } from "@/styles/StylesProvider";
+import client from "@/utils/apollo-client";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <StylesProvider>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </ApolloProvider>
     </StylesProvider>
   );
 }
