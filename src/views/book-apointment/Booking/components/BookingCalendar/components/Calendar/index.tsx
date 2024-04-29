@@ -1,32 +1,11 @@
-import cn from "classnames";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 
 import { DAYS } from "@/constants/days";
 import { ChevronLeft } from "@/icons/ChevronLeft";
 
+import { WeekRow } from "./components/WeekRow";
 import { StyledCalendar } from "./styled";
 import { getDaysInMonth } from "./utils/getDaysInMonth";
-
-const DateCell = ({ date, onClick }: any) => {
-  return (
-    <td
-      className={cn({
-        "calendar-day__inactive": date <= new Date(),
-      })}
-      onClick={() => date && onClick(date)}
-    >
-      {date && date.getDate()}
-    </td>
-  );
-};
-
-const WeekRow = ({ dates, selectedDate, chosenDate, onClick }: any) => (
-  <tr>
-    {dates.map((date: any, index: any) => (
-      <DateCell key={index} date={date} selectedDate={selectedDate} chosenDate={chosenDate} onClick={onClick} />
-    ))}
-  </tr>
-);
 
 interface Props {
   className: string;
@@ -35,33 +14,22 @@ interface Props {
 }
 
 export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className }) => {
-  const [chosenDate, setChosenDate] = useState<any>(null);
+  const [localDate, setLocalDate] = useState<Date>(selectedDate);
 
-  useEffect(() => {
-    const storedDate = localStorage.getItem("chosenDate");
-    if (storedDate) {
-      setChosenDate(new Date(storedDate));
-    }
-  }, []);
-
-  const changeDate = (change: number) => {
-    const newDate = new Date(selectedDate);
+  const changeMonth = (change: number) => {
+    const newDate = new Date(localDate);
     newDate.setMonth(newDate.getMonth() + change);
-    handleDateSelect(newDate);
-
-    localStorage.setItem("chosenDate", newDate.toISOString());
+    setLocalDate(newDate);
   };
 
-  const selectDate = (date: any) => {
+  const selectDate = (date: Date) => {
     if (date <= new Date()) return;
     handleDateSelect(date);
-    setChosenDate(date);
-
-    localStorage.setItem("chosenDate", date.toISOString());
+    setLocalDate(date);
+    localStorage.setItem("choosenDate", date.toISOString());
   };
 
-  const days = getDaysInMonth(selectedDate);
-
+  const days = getDaysInMonth(localDate);
   const weeks = Array.from({ length: Math.ceil(days.length / 7) });
 
   return (
@@ -70,7 +38,7 @@ export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className 
         <span>Select dates</span>
 
         <div className="calendar-head__controls">
-          <button type="button" onClick={() => changeDate(-1)}>
+          <button type="button" onClick={() => changeMonth(-1)}>
             <ChevronLeft />
           </button>
 
@@ -81,7 +49,7 @@ export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className 
             })}
           </span>
 
-          <button type="button" onClick={() => changeDate(1)}>
+          <button type="button" onClick={() => changeMonth(1)}>
             <ChevronLeft />
           </button>
         </div>
@@ -99,8 +67,7 @@ export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className 
             <WeekRow
               key={weekIndex}
               dates={days.slice(weekIndex * 7, (weekIndex + 1) * 7)}
-              selectedDate={selectedDate}
-              chosenDate={chosenDate}
+              choosenDate={selectedDate}
               onClick={selectDate}
             />
           ))}

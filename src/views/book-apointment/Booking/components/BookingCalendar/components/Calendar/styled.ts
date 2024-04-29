@@ -27,7 +27,6 @@ export const StyledCalendar = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 10px;
-
     color: ${({ theme }) => theme.colors["pink-kisses"]};
   }
 
@@ -40,14 +39,5 @@ export const StyledCalendar = styled.div`
 
   table {
     width: 100%;
-  }
-
-  td {
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .calendar-day__inactive {
-    color: #b0b0b0;
   }
 `;

@@ -87,7 +87,7 @@ const BookingForm: FC = () => {
 
   const handleSaveToLocalStorage = () => {
     localStorage.setItem("bookingFormData", JSON.stringify(formData));
-    setModalOpen(false); // Optionally close the modal after saving
+    setModalOpen(false);
   };
 
   return (

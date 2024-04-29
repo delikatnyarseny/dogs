@@ -10,7 +10,11 @@ interface Props {
 }
 
 const BookingCalendar: FC<Props> = memo(({ className, handleFormDateChange }) => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return new Date(tomorrow.setHours(0, 0, 0, 0));
+  });
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
