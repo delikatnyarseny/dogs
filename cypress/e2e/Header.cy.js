@@ -1,5 +1,3 @@
-import { PATHS } from "../../src/constants/paths";
-
 describe("Navigation in Header", () => {
   it("should navigate to different pages when links are clicked", () => {
     cy.visit("/"); // Предполагая, что заголовок находится на главной странице
