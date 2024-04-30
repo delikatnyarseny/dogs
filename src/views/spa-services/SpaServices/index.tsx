@@ -11,9 +11,13 @@ interface Props {
 }
 
 const SpaServices: FC<Props> = ({ data }) => {
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <StyledSpaServices>
-      <ul className="spa-list">
+      <ul className="spa-list" data-testid="spa-list">
         {data.map(({ title, price, description }) => (
           <li key={title} className="spa-list__item">
             <div className="spa-list__item-title">
