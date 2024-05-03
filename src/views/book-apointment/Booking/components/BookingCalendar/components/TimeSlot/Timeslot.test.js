@@ -1,6 +1,8 @@
-import { StylesProvider } from "@/styles/StylesProvider";
 import { render } from "@testing-library/react";
 import React from "react";
+
+import { StylesProvider } from "@/styles/StylesProvider";
+
 import { TimeSlot } from "./index.tsx";
 import { getAvailableTimeSlots } from "./utils/getAvailableTimeSlots";
 import { getFormattedDay } from "./utils/getFormattedDay";

@@ -1,7 +1,9 @@
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
-import { Calendar } from "./index.tsx";
+
 import { StylesProvider } from "@/styles/StylesProvider";
+
+import { Calendar } from "./index.tsx";
 
 describe("Calendar component", () => {
   test("renders correctly", () => {
