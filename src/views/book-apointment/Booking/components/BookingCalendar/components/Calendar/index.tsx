@@ -38,7 +38,7 @@ export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className 
         <span>Select dates</span>
 
         <div className="calendar-head__controls">
-          <button type="button" onClick={() => changeMonth(-1)}>
+          <button type="button" onClick={() => changeMonth(-1)} aria-label="Previous month">
             <ChevronLeft />
           </button>
 
@@ -49,7 +49,7 @@ export const Calendar: FC<Props> = ({ selectedDate, handleDateSelect, className 
             })}
           </span>
 
-          <button type="button" onClick={() => changeMonth(1)}>
+          <button type="button" onClick={() => changeMonth(1)} aria-label="Next month">
             <ChevronLeft />
           </button>
         </div>

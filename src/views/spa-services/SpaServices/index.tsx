@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FC } from "react";
 
 import { StyledSpaServices } from "./styled";
@@ -15,20 +16,32 @@ const SpaServices: FC<Props> = ({ data }) => {
     return null;
   }
 
+  const listItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.3,
+      },
+    }),
+  };
+
   return (
     <StyledSpaServices>
-      <ul className="spa-list" data-testid="spa-list">
-        {data.map(({ title, price, description }) => (
-          <li key={title} className="spa-list__item">
+      <motion.ul className="spa-list" data-testid="spa-list" initial="hidden" animate="visible">
+        {data.map(({ title, price, description }, index) => (
+          <motion.li key={title} className="spa-list__item" custom={index} variants={listItemVariants}>
             <div className="spa-list__item-title">
               <p>{title}</p>
               <p>{price}</p>
             </div>
 
             <p className="spa-list__item-description">{description}</p>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </StyledSpaServices>
   );
 };

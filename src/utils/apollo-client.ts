@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
 
 const restLink = new RestLink({
-  uri: "https://api.api-ninjas.com/v1/", // базовый URL для REST запросов
+  uri: "https://api.api-ninjas.com/v1/",
   headers: {
     "X-Api-Key": "noZB2jRaDwoaCOtPRefMqA==HXf2dolu6fqd8Cle",
     "Content-Type": "application/json",

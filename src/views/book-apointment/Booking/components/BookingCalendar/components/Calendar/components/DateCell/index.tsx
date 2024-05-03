@@ -15,6 +15,7 @@ const DateCell: FC<Props> = ({ cellDate, onClick, choosenDate }) => {
       onClick={() => cellDate && onClick(cellDate)}
       className={cn({
         "data-cell__inactive": cellDate <= new Date(),
+        "data-cell": cellDate > new Date(),
         "data-cell__active": cellDate.getTime() === choosenDate.getTime(),
       })}
     >

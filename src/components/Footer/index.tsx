@@ -53,7 +53,6 @@ export const Footer: FC<Props> = () => {
 
         <div className="footer-media__container">
           <p className="footer-heading">Connect With Us On Social Media</p>
-          <ul></ul>
         </div>
       </div>
 

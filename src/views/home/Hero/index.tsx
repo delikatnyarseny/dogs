@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC } from "react";
 
@@ -9,19 +10,29 @@ import { StyledHero } from "./styled";
 interface Props {}
 
 const Hero: FC<Props> = () => {
+  // Animation variants for the image and content
+  const imageVariants = {
+    hidden: { scale: 1.1, opacity: 0 },
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.8 } },
+  };
+
+  const contentVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.5 } },
+  };
+
   return (
     <StyledHero>
-      <div className="hero-image__wrapper">
+      <motion.div className="hero-image__wrapper" initial="hidden" animate="visible" variants={imageVariants}>
         <Image src={heroImage} fill alt="hero-image" className="hero-image" />
-      </div>
+      </motion.div>
 
-      <div className="hero-content">
+      <motion.div className="hero-content" initial="hidden" animate="visible" variants={contentVariants}>
         <h1 className="hero-title">Book your doggy spa day!</h1>
-
         <Button size="xl" className="hero-button" href="/book-appointment">
           Book Appointment
         </Button>
-      </div>
+      </motion.div>
     </StyledHero>
   );
 };

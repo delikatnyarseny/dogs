@@ -18,17 +18,20 @@ const BlogStory: FC<Props> = ({ data: { image, alt, description, subTitle }, ima
   return (
     <StyledBlogStory imageLeft={imageLeft}>
       <motion.div
-        initial={{ x: imageLeft ? -1000 : 1000, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ type: "spring", duration: 0.5 }}
-        className="about-story__image-wrapper__background"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="about-story__image-wrapper"
       >
-        <div className="about-story__image-wrapper">
-          <Image src={image} alt={alt} fill className="about-story__image" />
+        <div className="about-story__image">
+          <Image src={image} alt={alt} fill />
         </div>
       </motion.div>
 
-      <p className="about-story__description">{description}</p>
+      <div className="about-story__content">
+        {subTitle && <p className="about-story__subTitle">{subTitle}</p>}
+        <p className="about-story__description">{description}</p>
+      </div>
     </StyledBlogStory>
   );
 };

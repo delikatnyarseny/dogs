@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { ANIMAL_CARRY_ONS } from "@/constants/animal-carry-ons";
 import { DOG_COLLARS } from "@/constants/dog-collars";
 import { Hero } from "@/views/home/Hero";
+import { HomeModal } from "@/views/home/HomeModal";
 import { ProductShowcase } from "@/views/home/ProductShowcase";
 
 export default function HomePage() {
@@ -20,6 +21,8 @@ export default function HomePage() {
         buttonLabel={"See More Carry Ons"}
         buttonLink={"#"}
       />
+
+      <HomeModal />
     </Layout>
   );
 }
