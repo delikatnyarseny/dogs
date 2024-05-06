@@ -1,8 +1,10 @@
-import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import { ContactForm } from "./ContactForm";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import emailjs from "emailjs-com";
+import React from "react";
+
 import { StylesProvider } from "@/styles/StylesProvider";
+
+import { ContactForm } from "./ContactForm";
 
 jest.mock("emailjs-com", () => ({
   send: jest.fn().mockResolvedValueOnce({ status: 200 }),
