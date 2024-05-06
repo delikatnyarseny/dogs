@@ -4,9 +4,8 @@ import { SearchIcon } from "@/icons/SearchIcon";
 
 import { StyledSearchInput } from "./styled";
 
-interface Props {
+export interface Props {
   className?: string;
-
   value: string;
   placeholder: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;

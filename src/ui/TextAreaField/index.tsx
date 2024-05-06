@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { StyledTextArea } from "./styled";
 
-interface Props {
+export interface Props {
   className?: string;
   error?: string;
   name: string;

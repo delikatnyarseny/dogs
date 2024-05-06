@@ -14,7 +14,6 @@ export const StyledModal = styled.div<{ hasOverlay: boolean }>`
 
   .modal-content {
     background-color: white;
-    padding: 20px;
     border-radius: 5px;
     position: relative;
     width: auto;

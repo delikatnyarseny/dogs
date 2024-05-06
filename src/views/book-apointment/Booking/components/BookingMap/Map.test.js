@@ -4,7 +4,7 @@ import React from "react";
 import { BookingMap } from "./index";
 
 describe("BookingMap component", () => {
-  test("renders without crashing", () => {
+  it("renders without crashing", () => {
     render(<BookingMap />);
   });
 });

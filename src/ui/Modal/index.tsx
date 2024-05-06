@@ -3,7 +3,7 @@ import React, { FC, ReactNode } from "react";
 
 import { StyledModal } from "./styled";
 
-interface Props {
+export interface Props {
   isOpen: boolean;
   children: ReactNode;
   hasOverlay?: boolean;

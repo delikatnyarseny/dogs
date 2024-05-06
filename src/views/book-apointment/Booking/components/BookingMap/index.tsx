@@ -30,7 +30,9 @@ const BookingMap: FC<Props> = () => {
         <Marker key={index} position={marker} />
       ))}
     </GoogleMap>
-  ) : null;
+  ) : (
+    <div>loading</div>
+  );
 };
 
 export { BookingMap };

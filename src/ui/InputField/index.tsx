@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from "react";
 
 import { StyledInputField } from "./styled";
 
-interface Props {
+export interface Props {
   className?: string;
   name: string;
   value: string;
